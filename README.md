@@ -74,7 +74,7 @@ Algorithms must be contained in a file titled _[teamName].py._
 
 ### **Accepted Packages**
 
-To ensure that code runs smoothly on the servers used for marking, we advise the following:
+To ensure that code runs smoothly on the servers used for marking, we advise the following: 
 
 - Use only standard packages and their respective versions from the Anaconda library. The best way to do this is to simply download Anaconda...
 - Where necessary, packages that are not included as part of Anaconda, or version numbers that are greater than those provided in Anaconda need to be declared in the submission form in the relevant section.
