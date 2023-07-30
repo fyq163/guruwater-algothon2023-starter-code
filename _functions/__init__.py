@@ -16,13 +16,21 @@ def loadPrices(fn):
     nt, nInst = df.values.shape
     return (df.values).T
 
-def get_mom(fn, time_frame, ):
-    """
 
-    :return:
+def get_mom(df, time_frame):
     """
+    :param df: dataframe of prices, cols are per stocks, rows are days
+    :param time_frame: time frame for momentum
+    :return: momentum for each stock
+    In the first time_frame days, no data, no data, no actions.
+
+    """
+    (nins, nt) = df.shape
+
 
 if __name__ == '__main__':
     pricesFile = "./prices.txt"
     prcAll = loadPrices(pricesFile)
     print("Loaded %d instruments for %d days" % (nInst, nt))
+    prcHistSoFar = prcAll[:,:30]
+    mom = get_mom(prcHistSoFar, 14)
