@@ -32,6 +32,7 @@ def get_mom(a_col, time_frame=14):
     :param time_frame: time frame for momentum
     :return: momentum for this rol, this stock
     In the first time_frame days, no data, no data, no actions.
+    https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/momentum
     """
     momentum_list = shift(a_col, -time_frame, cval=np.NaN) - a_col
     momentum_list = np.roll(momentum_list, np.count_nonzero(np.isnan(momentum_list)))
@@ -40,13 +41,14 @@ def get_mom(a_col, time_frame=14):
 
 def get_macd(raw_prc, n_fast=12, n_slow=26):
     """
-    https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/momentum
+
     Create a MACD indicator with the specified fast and slow moving
     :param raw_prc: take raw prcHistSoFar and process inside function
     :param n_fast: fast moving average default 12
     :param n_slow:default 26
     :return:macd, signal, histogram, we care only histogram and if it is changing sign.
     No format change, it is still column for date, rows for stocks
+    https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/moving_average_oscillator
     """
     df = pd.DataFrame(raw_prc)
     ema_fast = df.ewm(span=n_fast, min_periods=n_slow, axis=1).mean()
@@ -64,5 +66,4 @@ if __name__ == '__main__':
     prcHistSoFar = prcAll[:, :50]
     # histogram = get_macd(prcHistSoFar)
 
-
-#%%
+# %%
