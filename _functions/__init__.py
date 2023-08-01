@@ -40,6 +40,7 @@ def get_mom(a_col, time_frame=14):
 
 def get_macd(raw_prc, n_fast=12, n_slow=26):
     """
+    https://www.metatrader4.com/en/trading-platform/help/analytics/tech_indicators/momentum
     Create a MACD indicator with the specified fast and slow moving
     :param raw_prc: take raw prcHistSoFar and process inside function
     :param n_fast: fast moving average default 12
@@ -53,8 +54,7 @@ def get_macd(raw_prc, n_fast=12, n_slow=26):
     macd = ema_fast - ema_slow
     signal = macd.ewm(span=9, min_periods=8, axis=1).mean()
     histogram = macd - signal
-    return macd, signal, histogram
-
+    return histogram
 
 
 if __name__ == '__main__':
@@ -62,4 +62,7 @@ if __name__ == '__main__':
     prcAll = loadPrices(pricesFile)
     print("Loaded %d instruments for %d days" % (nInst, nt))
     prcHistSoFar = prcAll[:, :50]
-    _,_,histogram = get_macd(prcHistSoFar)
+    # histogram = get_macd(prcHistSoFar)
+
+
+#%%

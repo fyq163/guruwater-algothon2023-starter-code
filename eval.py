@@ -43,7 +43,6 @@ def calcPL(prcHist):
         posLimits = np.array([int(x) for x in dlrPosLimit / curPrices])
         #                                      10000     / 今天价格 = 今天最大可持有的股票数量
         newPos = np.clip(newPosOrig, -posLimits, posLimits)
-        # 切
         deltaPos = newPos - curPos
         dvolumes = curPrices * np.abs(deltaPos)
         dvolume = np.sum(dvolumes)
