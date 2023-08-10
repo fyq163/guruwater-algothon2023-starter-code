@@ -7,6 +7,14 @@ def rest_import():
     print('import success')
 
 
+def clip_position(curpo,prc):
+    curPrices = prc[:, -1]  # prcHist[:,t-1]
+    posLimits = np.array([int(x) for x in 10000 / curPrices])
+    #                                      10000     / 今天价格 = 今天最大可持有的股票数量
+    currentPos = np.clip(curpo, -posLimits, posLimits)
+    return currentPos
+
+
 def test_get_mom(prc):
     """
     PASSED test
@@ -57,6 +65,8 @@ def get_macd(raw_prc, n_fast=12, n_slow=26):
     signal = macd.ewm(span=9, min_periods=8, axis=1).mean()
     histogram = macd - signal
     return histogram
+
+
 
 
 if __name__ == '__main__':
